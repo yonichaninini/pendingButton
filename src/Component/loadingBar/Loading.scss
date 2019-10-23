@@ -1,0 +1,22 @@
+.Loading-component-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg{
+        .circle-background,.circle-progress{
+            fill: none;
+        }
+        .circle-background{
+        stroke : #ddd;
+        }
+        .circle-progress {
+        stroke: black;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        }  
+    }
+    .text{
+        font-size : 16px;
+        margin-left: 10px;
+    }
+}
