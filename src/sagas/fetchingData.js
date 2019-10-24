@@ -1,11 +1,16 @@
-import {takeLatest,put,delay} from 'redux-saga/effects';
-import {SEND_INITIAL, SEND_REQUEST, SEND_SUCCESS, SEND_FAILURE} from '../reducers/fetchingData';
+import {takeLatest,put,delay,call} from 'redux-saga/effects';
+import axios from "axios";
+import {SEND_INITIAL, SEND_REQUEST, SEND_SUCCESS, SEND_FAILURE , send_request} from '../reducers/fetchingData';
 
-function* sendSaga(){
+function postApicall(apiURL,method){
+  return axios({url : apiURL, method : method});
+}
+function* sendSaga(action){
 try{
-  yield delay(3000);
+  const res = yield call(postApicall,action.payload.apiURL,action.payload.method);
   yield put({
     type : SEND_SUCCESS,
+    data : res.data,
   });
   yield delay(2000);
   yield put({
@@ -20,5 +25,5 @@ try{
 }
 }
 export default function* watchSend(){
-  yield takeLatest(SEND_REQUEST,sendSaga);
+  yield takeLatest(SEND_REQUEST, sendSaga);
 }
