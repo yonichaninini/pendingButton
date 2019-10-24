@@ -2,17 +2,11 @@ import React from 'react';
 import './App.css';
 import Pending from './Component/pendingButton/Pending';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { send_request } from './reducers/fetchingData';
 
 function App() {
-  let isLoading = useSelector(state => state.isLoading, []);
-  let isSuccess = useSelector(state => state.isSuccess, []);
-
-  const dispatch = useDispatch();
 
   const onFetchingHandle = () => {
-    dispatch(send_request());
+
   }
   const onFailureHandle = () => {
 
@@ -21,7 +15,7 @@ function App() {
 
   }
   const onProcess  = () => {
-    let i = 0;
+    /*let i = 0;
     const frame = () => {
       if(i >= 100) {
         clearInterval(progress);
@@ -32,15 +26,15 @@ function App() {
         return i
       }
     }
-    let progress = setInterval(frame,30);
+    let progress = setInterval(frame,30);*/
   }
   return (
     <div className = "App">
       <Pending
       successText = "전송성공" 
       failureText = "전송실패"
-      isLoading = {isLoading}
-      isSuccess = {isSuccess}
+      apiURL = "https://jsonplaceholder.typicode.com/photos/1"
+      method = "get"
       onFetchingHandle = {onFetchingHandle}
       onFailureHandle = {onFailureHandle}
       onSuccessHandle = {onSuccessHandle}
