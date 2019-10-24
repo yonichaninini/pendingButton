@@ -1,6 +1,9 @@
 import React  from 'react';
 import styled from 'styled-components';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { send_request } from '../../reducers/fetchingData';
+
 import Loading from '../loadingBar/Loading';
 
 import PropTypes from 'prop-types';
@@ -20,12 +23,23 @@ const PendingButton = styled.button `
 `
 
 const Pending = (props) => {
+  let isLoading = useSelector(state => state.isLoading, []);
+  let isSuccess = useSelector(state => state.isSuccess, []);
+  let post = useSelector(state => state.post,[]);
+  const dispatch = useDispatch();
+  const onFatching = () =>{
+    dispatch(send_request(props.apiURL,props.method));
+
+  }
   return (
     <div>
-      <PendingButton isLoading = {props.isLoading} onClick = {props.onFetchingHandle} disabled = {props.isLoading} >
-        {props.isLoading ? <Loading sqSize = "15px" percent = {props.onProcess} onProcess = {props.onProcess}>Loading</Loading> 
-                  : props.isSuccess ? props.successText
-                  : props.isSuccess === null ? props.children : props.failureText}
+      <div>
+        {post.title}
+      </div>
+      <PendingButton isLoading = {isLoading} onClick = {onFatching} disabled = {isLoading} >
+        {isLoading ? <Loading sqSize = "15px" percent = {props.onProcess} onProcess = {props.onProcess}>Loading</Loading> 
+                  : isSuccess ? props.successText
+                  : isSuccess === null ? props.children : props.failureText}
       </PendingButton>
     </div>
   );
@@ -35,7 +49,6 @@ Pending.propTypes = {
   successText : PropTypes.string,
   failureText : PropTypes.string,
   onFetchingHandle : PropTypes.func.isRequired,
-  isLoading : PropTypes.bool.isRequired,
 };
 Pending.defaultProps = {
   children : 'SEND',
