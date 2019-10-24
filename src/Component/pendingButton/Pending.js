@@ -31,10 +31,11 @@ const Pending = (props) => {
     dispatch(send_request(props.apiURL,props.method));
 
   }
+  props.onSuccessHandle(post.thumbnailUrl)
   return (
     <div>
       <div>
-        {post.title}
+        <img src = {post.thumbnailUrl} />
       </div>
       <PendingButton isLoading = {isLoading} onClick = {onFatching} disabled = {isLoading} >
         {isLoading ? <Loading sqSize = "15px" percent = {props.onProcess} onProcess = {props.onProcess}>Loading</Loading> 

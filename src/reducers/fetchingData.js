@@ -8,10 +8,7 @@ export const SEND_SUCCESS = 'SEND_SUCCESS';
 export const SEND_FAILURE = 'SEND_FAILURE';
 export const SEND_INITIAL = 'SEND_INITIAL';
 
-export const send_request = (apiURL,method) => {
-  return{ type: SEND_REQUEST, payload : {apiURL,method}}
-};
-
+export const send_request = (apiURL,method) => ({type: SEND_REQUEST, payload : {apiURL,method}});
 export const send_success = (post) => ({ type: SEND_SUCCESS, data : post});
 export const send_failure = () => ({ type: SEND_FAILURE });
 export const send_initial = () => ({ type: SEND_INITIAL });

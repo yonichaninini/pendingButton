@@ -11,22 +11,10 @@ function App() {
   const onFailureHandle = () => {
 
   }
-  const onSuccessHandle = () => {
-
+  const onSuccessHandle = (data) => {
+    let post = data;
   }
   const onProcess  = () => {
-    /*let i = 0;
-    const frame = () => {
-      if(i >= 100) {
-        clearInterval(progress);
-      }
-      else {
-        i++;
-        console.log(i);
-        return i
-      }
-    }
-    let progress = setInterval(frame,30);*/
   }
   return (
     <div className = "App">

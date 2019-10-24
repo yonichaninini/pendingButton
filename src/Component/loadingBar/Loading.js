@@ -3,7 +3,6 @@ import './Loading.scss';
 
 const Loading = (props) => {
   const [percent,setPercent] = useState(0);
-  console.log("render");
   const size = 30;
   const strokeWidth = 5;
   const radius = (size-strokeWidth)/2;
